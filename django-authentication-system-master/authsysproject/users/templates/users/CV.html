@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+{% extends 'users/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if CV_Info.full_name %}{{CV_Info.full_name}}'s CV {% endif %}</title>
+
+    <!-- CV Styling -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro&display=swap')
+
+        body
+        {
+        font-family: 'Lato', sans-serif;;
+        background: #ffffff;
+        color: rgba(0,0,0,0.75);
+        }
+
+        h1, p
+        {
+        box-sizing: border-box;
+        margin: 0px;
+        padding: 0px 24px;
+        }
+
+        .line-break{
+        width: 100%;
+        height: 1px;
+        margin: 16px auto;
+        border-bottom: 1px solid #eee;
+        }
+
+        .CV{
+        border-radius: 8px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        max-width: 800px;
+        margin: 48px auto;
+        padding: 16px 0px;
+        background: white;
+        box-shadow: 0 1px 3px;
+        }
+
+        .CV-group{
+        box-sizing: border-box;
+        padding: 8px 0px;
+        width: 100%;
+        display: flex;
+        border-left: 3px;
+        transition: 0.2s;
+        }
+
+        .left-column{
+        width: 35%
+        }
+
+        .right-column{
+        width: 65%
+        }
+
+        .instructions{
+        opacity: 0.5;
+        text-align: center;
+        margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="CV">
+    <!-- Basic info Print -->
+    {% if CV_Info.full_name %}
+    <h1>{{CV_Info.full_name}}</h1>
+    {% endif %}
+
+    {% if CV_Info.email %}
+    <p>{{CV_Info.email}}</p>
+    {% endif %}
+
+    {% if CV_Info.phone %}
+    <p>{{CV_Info.phone}}</p>
+    {% endif %}
+
+    {% if CV_Info.address %}
+    <p>{{CV_Info.address}}</p>
+    {% endif %}
+
+    <div class="line-break"></div>
+    {% if CV_Info.about_you %}
+
+    <!-- About You Print -->
+    <div class="CV-group">
+        <div class="left-column"><p>About Me</p></div>
+        <div class="right-column">
+            <p>{{CV_Info.about_you}}</p>
+        </div>
+    </div>
+    {% endif %}
+
+
+    <!-- Career Print -->
+    {% if CV_Info.career %}
+    <div class="CV-group">
+        <div class="left-column">
+            <p>Career Objectives</p>
+        </div>
+        <div class="right-column">
+            <p>{{CV_Info.career}}</p>
+        </div>
+    </div>
+    {% endif %}
+
+
+    <!-- Education Print -->
+    {% if CV_Info.education %}
+    <div class="CV-group">
+        <div class="left-column">
+            <p>Education</p>
+        </div>
+        <div class="right-column">
+            <p>{{CV_Info.education}}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Employment Header Print -->
+    <div class="CV-group">
+        <div class="left-column">
+            <p>Employment Experience</p>
+        </div>
+        <div class="right-column">
+            <p></p>
+        </div>
+    </div>
+
+    <!-- Job 1 Print -->
+    {% if CV_Info.job_1_start %}
+
+    <div class="CV-group">
+        <div class="left-column">
+            <p>{{CV_Info.job_1_start}} to {{CV_Info.job_1_end}}</p>
+        </div>
+        <div class="right column">
+            <p>{{CV_Info.job_1_details}}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Job 2 Print -->
+    {% if CV_Info.job_2_start %}
+
+    <div class="CV-group">
+        <div class="left-column">
+            <p>{{CV_Info.job_2_start}} to {{CV_Info.job_2_end}}</p>
+        </div>
+        <div class="right column">
+            <p>{{CV_Info.job_2_details}}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Job 3 Print -->
+    {% if CV_Info.job_3_start %}
+
+    <div class="CV-group">
+        <div class="left-column">
+            <p>{{CV_Info.job_3_start}} to {{CV_Info.job_3_end}}</p>
+        </div>
+        <div class="right column">
+            <p>{{CV_Info.job_3_details}}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- References Print -->
+    <div class="CV-group">
+        <div class="left-column">
+            <p>References</p>
+        </div>
+        <div class="right-column">
+            <p>{% if CV_Info.references %}{{CV_Info.references}}{% else %}Available on request{% endif %}</p>
+        </div>
+    </div>
+</div>
+
+<div class="instructions">
+    CTRL + P and "Save as PDF" to make a copy of this CV
+</div>
+</body>
+</html>
+{% endblock %}

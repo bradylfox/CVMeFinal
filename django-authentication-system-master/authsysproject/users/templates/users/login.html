@@ -1,0 +1,70 @@
+{% extends 'users/base.html' %}
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CVMe Login</title>
+    <link href="{% static 'users/css/main.css' %}" type="text/css">
+</head>
+<html lang="en">
+
+{% block content %}
+<body>
+    <div class="container" style="margin-top: 30px;">
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <div class="form-header">
+            <fieldset class="form-group">
+          <legend class="border-bottom mb-4" style="color: white;">Sign in</legend>
+            </fieldset>
+            <p>
+                Enter your login details below.
+            </p>
+            {% csrf_token %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %} style="colour:red;">{{message}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Form Enter Username -->
+        <div class="form-group">
+            <label for="username">
+                Username
+                <span>
+                    *
+                </span>
+            </label>
+            <input id="username" name="username" type="text"/>
+            <div class="error" id="name_error">
+            </div>
+        </div>
+
+        <!-- Form Enter Password-->
+        <div class="form-group">
+            <label for="password">
+                Password
+                <span>
+                    *
+                </span>
+            </label>
+            <input id="password" name="password" type="password"/>
+            </div>
+        <div class="link-break">
+        </div>
+
+
+        <input id="login" type="submit" value="Login"/>
+        Don't have an account? <a href="register">Sign Up</a>
+
+    </form>
+    </div>
+<script src="{% static  './script.js' %}" ></script>
+</body>
+{% endblock %}
+</html>

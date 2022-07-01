@@ -1,0 +1,184 @@
+{% extends 'users/base.html' %}
+
+{% load static %}
+{% block content %}
+
+<div class="container" style="margin-top: 30px;">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CVMe CV Builder</title>
+    <link href="{% static 'users/css/main.css' %}" type="text/css">
+</head>
+
+<body>
+
+
+<form method="post">
+    {% csrf_token %}
+
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %} style="colour:red;">{{message}}</li>
+        {% endfor %}
+    </ul>
+
+    <div class="form_header">
+        <h1> Build your CV </h1>
+        <p> Please fill in the fields below to create your CV </p>
+    </div>
+
+
+    <!-- Form Enter Name -->
+    <div class="form_group">
+        <label for="name">
+            Full Name
+        </label>
+        <input id="name" name="name" value="{{cv_info.full_name}}" type="text"/>
+        <div class="error" id="name_error"></div>
+    </div>
+
+    <!-- Form Enter address -->
+    <div class="form_group">
+        <label for="address">
+            Address
+        </label>
+        <input id="address" name="address" value="{{cv_info.address}}" type="text"/>
+    </div>
+
+    <!-- Form Enter phone number -->
+    <div class="form_group">
+        <label for="phone">
+            Phone Number
+        </label>
+        <input id="phone" name="phone" value="{{cv_info.phone}}" type="text"/>
+    </div>
+
+    <!-- Form Enter Email -->
+    <div class="form_group">
+        <label for="email">
+            Email
+        </label>
+        <input id="email" name="email" value="{{cv_info.email}}" type="text"/>
+    </div>
+
+    <!-- Form Enter Email -->
+    <div class="form_group">
+        <label for="about">
+            About You
+        </label>
+        <textarea id="about" name="about" placeholder="{{cv_info.about_you}}"> </textarea>
+    </div>
+
+    <!-- Form Enter career achievements-->
+    <div class="form_group">
+        <label for="career">
+            Career Achievements
+        </label>
+        <textarea id="career" name="career" placeholder="{{cv_info.career}}"> </textarea>
+    </div>
+
+    <!-- Form Enter Education -->
+    <div class="form_group">
+        <label for="education">
+            Education
+        </label>
+        <textarea id="education" name="education" placeholder="{{cv_info.education}}"> </textarea>
+    </div>
+
+
+
+    <h2> Work Experience </h2>
+
+    <!--Most Recent Job Form -->
+    <h3> Most Recent Job</h3>
+
+    <div class="form_date_group">
+        <div class="form_group">
+            <label for="job_1_start"> Start Date </label>
+            <input id="job_1_start" name="job_1_start" value="{{cv_info.job_1_start}}" type="date"/>
+        </div>
+
+        <div class="form_group">
+            <label for="job_1_end"> End Date </label>
+            <input id="job_1_end" name="job_1_end" value="{{cv_info.job_1_end}}" type="date"/>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <label for="job_1_details">
+            Position Details
+        </label>
+        <textarea id="job_1_details" name="job_1_details" placeholder="{{cv_info.job_1_details}}"></textarea>
+    </div>
+
+
+
+    <!--Past Job Form1 -->
+    <h3> Past Job</h3>
+
+    <div class="form_date_group">
+        <div class="form_group">
+            <label for="job_2_start"> Start Date </label>
+            <input id="job_2_start" name="job_2_start" value="{{cv_info.job_2_start}}" type="date"/>
+        </div>
+
+        <div class="form_group">
+            <label for="job_2_end"> End Date </label>
+            <input id="job_2_end" name="job_2_end" value="{{cv_info.job_2_end}}" type="date"/>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <label for="job_2_details">
+            Position Details
+        </label>
+        <textarea id="job_2_details" name="job_2_details" placeholder="{{cv_info.job_2_details}}"></textarea>
+    </div>
+
+
+    <!--Past Job Form2 -->
+    <h3> Past Job</h3>
+
+    <div class="form_date_group">
+        <div class="form_group">
+            <label for="job_3_start"> Start Date </label>
+            <input id="job_3_start" name="job_3_start" value="{{cv_info.job_3_start}}" type="date"/>
+        </div>
+
+        <div class="form_group">
+            <label for="job_3_end"> End Date </label>
+            <input id="job_3_end" name="job_3_end" value="{{cv_info.job_3_end}}" type="date"/>
+        </div>
+    </div>
+
+    <div class="form_group">
+        <label for="job_3_details">
+            Position Details
+        </label>
+        <textarea id="job_3_details" name="job_3_details" placeholder="{{cv_info.job_3_details}}"></textarea>
+    </div>
+
+    <!-- References form -->
+    <div class="form-group">
+        <label for="references">
+            References
+        </label>
+        <textarea id="references" name="references" placeholder="{{cv_info.references}}"></textarea>
+    </div>
+
+    <!--Submit Button-->
+    <input type="submit" value="Submit Info"/>
+
+    <br>
+    <a class="btn" href="{% url 'home' %}">Back to home</a>
+
+</form>
+
+
+
+</body>
+</html>
+    </div>
+{% endblock %}
+<script src="{% static  './script.js' %}" ></script>
